@@ -1,8 +1,13 @@
 const express = require("express");
+const Noticias = require("../models/noticias");
 const router = express.Router();
 
 router.get("/noticias", function (req, res) {
-  res.send({ type: "GET" });
+  Noticias.create(req.body)
+    .then(function (student) {
+      res.send(student);
+    })
+    .catch(next);
 });
 
 router.post("/noticias", function (req, res) {
