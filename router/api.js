@@ -12,7 +12,7 @@ router.get("/noticias", async function (req, res) {
     .catch("ola");
 });
 
-router.post("/noticias", async function (req, res) {
+router.post("/noticias", async function (req, res, next) {
   Noticias.create(req.body)
     .then(function (news) {
       res.send("Feito com sucesso!! Noticia " + news.titulo + " criada.");
