@@ -21,10 +21,10 @@ const NewSchema = new Schema({
   conteudo: {
     type: String,
   },
-  visivel: Boolean,
+  enable: Boolean,
   numVisualizacoes: Number,
   categorias: String,
-  urlImg: String,
+  urlImage: String,
 });
 
 const news = mongoose.model("noticias_pd", NewSchema);

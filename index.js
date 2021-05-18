@@ -5,11 +5,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 // connect to mongodb
-mongoose.connect("mongodb://localhost:27017", {
-  useUnifiedTopology: true,
-  user: "admin",
-  pass: "admin",
-});
+mongoose.connect("mongodb://admin1:admin@localhost:27017/trabalho_pd");
 mongoose.Promise = global.Promise;
 
 app.use(express.static("public"));

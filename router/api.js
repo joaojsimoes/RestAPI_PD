@@ -1,28 +1,39 @@
 const express = require("express");
 const Noticias = require("../models/noticias");
 const router = express.Router();
+//End points
+// GET apenas com enable a true
 
-router.get("/noticias", function (req, res) {
+router.get("/noticias", async function (req, res) {
+  Noticias.find({ enable: { $eq: true } })
+    .then(function (news) {
+      res.send(news);
+    })
+    .catch("ola");
+});
+
+router.post("/noticias", async function (req, res) {
   Noticias.create(req.body)
-    .then(function (student) {
-      res.send(student);
+    .then(function (news) {
+      res.send("Feito com sucesso!! Noticia " + news.titulo + " criada.");
     })
     .catch(next);
 });
 
-router.post("/noticias", function (req, res) {
-  res.send({
-    type: "POST",
-    name: req.body.name,
-    roll: req.body.roll,
+router.put("/noticias/:id", async function (req, res) {
+  Noticias.findOneAndUpdate({ _id: req.params.id }, req.body).then(function (
+    news
+  ) {
+    Noticias.findOne({ _id: req.params.id }).then(function (news) {
+      res.send("Feito com sucesso!! Noticia " + news.titulo + " alterada.");
+    });
   });
 });
 
-router.put("/noticias/:id", function (req, res) {
-  res.send({ type: "PUT" });
-});
-router.delete("/noticias/:id", function (req, res) {
-  res.send({ type: "DELETE" });
+router.delete("/noticias/:id", async function (req, res) {
+  Noticias.findOneAndDelete({ _id: req.params.id }).then(function (news) {
+    res.send(news);
+  });
 });
 
 module.exports = router;
