@@ -1,0 +1,13 @@
+version: "3.3"
+services: 
+  web:
+      build: .
+      ports:
+        - "4000:4000"
+      networks:
+        - mongo-compose-network
+networks: 
+  mongo-compose-network:
+      external: 
+        name: mongo-compose-network
+        
