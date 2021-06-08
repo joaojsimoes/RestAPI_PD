@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 const app = express();
 
 // connect to mongodb
-mongoose.connect("mongodb://admin1:admin@mongo:27017/trabalho_pd");
+const uri = "mongodb://admin:admin@mongo:27017/?authSource=admin"
+mongoose.connect(uri);
 mongoose.Promise = global.Promise;
 
 app.use(express.static("public"));
@@ -22,5 +23,5 @@ app.use(function (err, req, res, next) {
 
 // listen for requests
 app.listen(process.env.port || 4000, function () {
-  console.log("Ready to Go!");
+  console.log("Ready to Go!", uri);
 });

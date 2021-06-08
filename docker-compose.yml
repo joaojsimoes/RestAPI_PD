@@ -1,13 +1,15 @@
 version: "3.3"
 services: 
   web:
+      container_name: "rest_api"
       build: .
       ports:
         - "4000:4000"
       networks:
         - mongo-compose-network
+      links:
+        - mongo
 networks: 
   mongo-compose-network:
-      external: 
-        name: mongo-compose-network
+      name: mongo-compose-network
         
