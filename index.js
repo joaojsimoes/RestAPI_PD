@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
+const cors = require("cors");
 // set up our express app
 const app = express();
 
@@ -8,6 +8,7 @@ const app = express();
 const uri = "mongodb://admin:admin@mongo:27017/?authSource=admin"
 mongoose.connect(uri);
 mongoose.Promise = global.Promise;
+app.use(cors())
 
 app.use(express.static("public"));
 
