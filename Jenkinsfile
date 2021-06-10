@@ -1,7 +1,9 @@
 pipeline {
-    docker {
-        image: node:latest
-        args: "-p 3000:3000"
+    agent {
+        docker {
+            image: node:latest
+            args: "-p 3000:3000"
+        }
     }
     stages {
         stage('Build'){
