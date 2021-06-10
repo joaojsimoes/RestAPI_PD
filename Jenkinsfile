@@ -5,10 +5,5 @@ pipeline {
         }
     }
     stages {
-        stage('Run'){
-            steps {
-                sh 'npm start'
-            }
-        }
     }
 }
